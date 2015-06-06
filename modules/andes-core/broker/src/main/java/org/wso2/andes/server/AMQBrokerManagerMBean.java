@@ -171,7 +171,7 @@ public class AMQBrokerManagerMBean extends AMQManagedObject implements ManagedBr
                 if (exchange == null)
                 {
                     exchange = _exchangeFactory.createExchange(new AMQShortString(exchangeName), new AMQShortString(type),
-                                                               durable, false, 0);
+                            durable, false, 0);
                     _exchangeRegistry.registerExchange(exchange);
                     if (durable)
                     {
@@ -298,10 +298,10 @@ public class AMQBrokerManagerMBean extends AMQManagedObject implements ManagedBr
         }
         try
         {
+            CurrentActor.set(new ManagementActor(_logActor.getRootMessageLogger()));
             boolean isQueueDeletable = ClusterResourceHolder.getInstance().
                     getVirtualHostConfigSynchronizer().checkIfQueueDeletable(queue);
             if(isQueueDeletable) {
-                CurrentActor.set(new ManagementActor(_logActor.getRootMessageLogger()));
                 queue.delete();
                 if (queue.isDurable())
                 {
@@ -337,8 +337,6 @@ public class AMQBrokerManagerMBean extends AMQManagedObject implements ManagedBr
             } else {
                 throw new MBeanException(jme, "Error in deleting queue " + queueName + ":");
             }
-        } catch (Exception e) {
-            throw new MBeanException(e, "Error in deleting queue " + queueName + ". There was an issue with cluster coordination");
         }
         finally
         {

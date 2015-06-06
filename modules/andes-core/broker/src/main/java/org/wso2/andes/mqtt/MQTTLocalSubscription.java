@@ -211,22 +211,35 @@ public class MQTTLocalSubscription extends InboundSubscriptionEvent {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isActive() {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UUID getChannelID() {
         return channelID != null ? channelID : null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LocalSubscription createQueueToListentoTopic() {
         //mqqtServerChannel.
         throw new NotImplementedException();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean equals(Object o) {
         if (o instanceof MQTTLocalSubscription) {
             MQTTLocalSubscription c = (MQTTLocalSubscription) o;
@@ -240,6 +253,10 @@ public class MQTTLocalSubscription extends InboundSubscriptionEvent {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 31).
                 append(subscriptionID).
@@ -247,5 +264,22 @@ public class MQTTLocalSubscription extends InboundSubscriptionEvent {
                 append(targetQueue).
                 append(targetQueueBoundExchange).
                 toHashCode();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return super.toString() +
+               "/QOS=" + Integer.toString(subscriberQOS);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String encodeAsStr() {
+        return super.encodeAsStr() + ",qos=" + Integer.toString(subscriberQOS);
     }
 }
