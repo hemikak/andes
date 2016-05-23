@@ -32,6 +32,7 @@ import org.wso2.andes.server.cluster.ClusterAgent;
 import org.wso2.andes.server.cluster.ClusterManagementInformationMBean;
 import org.wso2.andes.server.cluster.ClusterManager;
 import org.wso2.andes.server.cluster.coordination.hazelcast.HazelcastAgent;
+import org.wso2.andes.server.information.management.DLCManagementInformationMBean;
 import org.wso2.andes.server.information.management.MessageStatusInformationMBean;
 import org.wso2.andes.server.information.management.SubscriptionManagementInformationMBean;
 import org.wso2.andes.server.queue.DLCQueueUtils;
@@ -378,6 +379,10 @@ public class AndesKernelBoot {
             MessageStatusInformationMBean messageStatusInformationMBean = new
                     MessageStatusInformationMBean();
             messageStatusInformationMBean.register();
+
+            DLCManagementInformationMBean dlcManagementInformationMBean = new
+                    DLCManagementInformationMBean();
+            dlcManagementInformationMBean.register();
         } catch (JMException ex) {
             throw new AndesException("Unable to register Andes MBeans", ex);
         }
