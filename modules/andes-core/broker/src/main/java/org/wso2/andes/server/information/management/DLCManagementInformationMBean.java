@@ -68,7 +68,7 @@ public class DLCManagementInformationMBean extends AMQManagedObject implements D
      * @throws AndesException
      */
     public DLCManagementInformationMBean() throws NotCompliantMBeanException, AndesException {
-        super(SubscriptionManagementInformation.class, SubscriptionManagementInformation.TYPE);
+        super(DLCManagementInformation.class, DLCManagementInformation.TYPE);
         andesChannel = Andes.getInstance().createChannel(new FlowControlListener() {
             @Override
             public void block() {

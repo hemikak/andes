@@ -43,7 +43,6 @@ import org.wso2.carbon.metrics.core.Level;
 import org.wso2.carbon.metrics.core.Meter;
 import org.wso2.carbon.metrics.core.MetricManager;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -811,5 +810,20 @@ public class Andes {
         //TODO:Need to properly clean the subscriptions, deactivate active subscriptions .etc
     }
 
+    public AndesContextStore getAndesContextStore() {
+        return andesContext.getAndesContextStore();
+    }
+
+    public AMQPConstructStore getAMQPConstructStore() {
+        return andesContext.getAMQPConstructStore();
+    }
+
+    public SubscriptionEngine getSubscriptionEngine() {
+        return andesContext.getSubscriptionEngine();
+    }
+
+    public MessagingEngine getMessagingEngine() {
+        return messagingEngine;
+    }
 }
 
